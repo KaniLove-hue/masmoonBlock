@@ -369,7 +369,7 @@ VALUE: 0
 return prompt(value)
 }, 'basic_string_field');
 //////////////
-addBlock('dark', '엔트리에 다크모드 적용시키기', {
+addBlock('dark', '네이버 실검', {
 color: '#ffccff',
 outerline: '#ffccff',
 }, {
@@ -393,20 +393,20 @@ VALUE: 0
 $("div, p, pre").css({"background-color" : "black", "color" : "black"}),console.log("entry_dark_mode_Start")
 },);
 //////////////
-addBlock('open', '%1유저의 마이페이지를 열거나 링크의 페이지를 열기', {
+addBlock('open', '%1항목의 네이버 실검 보기', {
 color: '#ffccff',
 outerline: '#ffccff',
 }, {
 params: [
 {
 type: 'Block',
-accept: 'string'
+accept: 'number'
 }
 ],
 def: [
 {
 type: "text",
-params: ['https://playentry.org/']
+params: ['1']
 }
 ],
 _class: 'box_',
@@ -414,12 +414,16 @@ map: {
 VALUE: 0
 },
 }, 'text', (sprite, script) => { const value = script.getValue('VALUE', script);
-m1 = confirm('이작품에서 '+value+' 유저또는 이링크의 페이지를 열려고합니다. 허락하시나요?')
+/*m1 = confirm('이작품에서 '+value+' 유저또는 이링크의 페이지를 열려고합니다. 허락하시나요?')
 if(m1) {
 open(value),console.log(value+'의 유저또는 이 링크의 페이지를 열었습니다.')
 } else {
 alert("작업이 취소되었습니다."),console.log("작업취소") }
-},);
+},);*/
+  fetch('https://www.naver.com/srchrank?frm=main')
+  .then(response => response.json())
+  .then(data => alert(data));
+                                                              
 //////////////
 addBlock('print', '본 페이지를 인쇄하기', {
 color: '#ffccff',
